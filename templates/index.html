@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT-Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <h1>📥 YT-Downloader</h1>
+    <div class="s-f">
+        <form method="POST">
+            <input type="text" name="url" placeholder="Enter YouTube URL" required>
+            <button class="btn" type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if title %}
+    <h3>🎬 {{ title }}</h3>
+    <div class="f-t">
+        <table border="1">
+            <tr>
+                <th>Ext</th><th>Resolution</th><th class="h-t2">Size</th><th class="h-t">Bitrate</th><th class="h-t">Note</th><th>Download</th>
+            </tr>
+            {% for f in formats %}
+            <tr>
+                <td>{{ f.ext }}</td>
+                <td>{{ f.resolution }}</td>
+                <td class="h-t2">{{ f.size }}</td>
+                <td class="h-t">{{ f.bitrate }}</td>
+                <td class="h-t">{{ f.note }}</td>
+                <td>
+                    <form action="/download" method="POST">
+                        <input type="hidden" name="url" value="{{ url }}">
+                        <input type="hidden" name="format_id" value="{{ f.id }}">
+                        <button type="submit">Download</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    
+    {% endif %}
+</body>
+</html>

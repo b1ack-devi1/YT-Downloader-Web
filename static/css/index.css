@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 0;
+    margin-left: 25%;
+    margin-right: 25%;
+    justify-content: center;
+}
+h1 {
+    text-align: center;
+}
+h3 {
+    text-align: center;
+}
+.s-f {
+    display: flex;
+    justify-content: center;
+}
+.f-t {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    text-align: center;
+    align-items: center;
+}
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+.btn {
+    margin-left: 10px;
+    background-color: #4e4e4e;
+}
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #218838;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #000000;
+}
+td {
+    background-color: #000000;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+.success {
+    color: green;
+    text-align: center;
+    margin-top: 20px;
+}
+@media (max-width: 1000px) {
+    body {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    form {
+        width: 90%;
+    }
+    input[type="text"] {
+        padding: 5px;
+    }
+    table {
+        width: 90%;
+    }
+    button {
+        padding: 5px 10px;
+    }
+    h3{
+        width: 99%;
+    }
+
+}
+
+@media (max-width: 530px) {
+    body {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    form {
+        width: 90%;
+    }
+    input[type="text"] {
+        padding: 3px;
+    }
+    table {
+        width: 90%;
+        font-size: 12px;
+    }
+    button {
+        padding: 3px 7px;
+    }
+    .btn {
+        margin-left: 5px;
+    }
+
+}
+@media (max-width: 450px) {
+    .h-t {
+        display: none;
+    }
+}
+
+@media (max-width: 300px) {
+    .h-t2 {
+        display: none;
+    }
+}
