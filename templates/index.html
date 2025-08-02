@@ -30,9 +30,11 @@
                 <td class="h-t">{{ f.bitrate }}</td>
                 <td class="h-t">{{ f.note }}</td>
                 <td>
-                    <a href="{{ f.url }}" target="_blank" download>
-                        <button type="button">Download</button>
-                    </a>
+                    <form action="/download" method="POST">
+                        <input type="hidden" name="url" value="{{ url }}">
+                        <input type="hidden" name="format_id" value="{{ f.id }}">
+                        <button type="submit">Download</button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
