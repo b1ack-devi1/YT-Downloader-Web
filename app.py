@@ -10,6 +10,7 @@ def list_formats(url):
         'quiet': True,
         'forcejson': True,
         'simulate': True,
+        'proxy': 'http://148.135.183.149',  # Replace with your proxy details if needed
     }
     with YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=False)
@@ -33,6 +34,7 @@ def download_format(url, format_id):
     ydl_opts = {
         'format': format_id,
         'outtmpl': os.path.join(temp_dir, '%(title)s.%(ext)s'),
+        'proxy': 'http://148.135.183.149',  # Replace with your proxy details if needed
     }
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
