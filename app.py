@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request, send_file
-import os
+from flask import Flask, render_template, request, jsonify
 from yt_dlp import YoutubeDL
-import tempfile
+import os
 
 app = Flask(__name__)
 
@@ -24,20 +23,10 @@ def list_formats(url):
                 'resolution': f.get('resolution', 'audio'),
                 'size': size_mb,
                 'bitrate': bitrate,
-                'note': f.get('format_note', '')
+                'note': f.get('format_note', ''),
+                'url': f.get('url')  # Direct YouTube URL for browser download
             })
     return info['title'], formats
-
-def download_format(url, format_id):
-    temp_dir = tempfile.mkdtemp()
-    ydl_opts = {
-        'format': format_id,
-        'outtmpl': os.path.join(temp_dir, '%(title)s.%(ext)s'),
-    }
-    with YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-        for file in os.listdir(temp_dir):
-            return os.path.join(temp_dir, file)  # Return the first file path
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -49,12 +38,21 @@ def index():
         title, formats = list_formats(url)
     return render_template("index.html", url=url, title=title, formats=formats)
 
-@app.route("/download", methods=["POST"])
-def download():
+@app.route("/direct-url", methods=["POST"])
+def get_direct_url():
     url = request.form["url"]
     format_id = request.form["format_id"]
-    file_path = download_format(url, format_id)
-    return send_file(file_path, as_attachment=True)
+
+    ydl_opts = {
+        'quiet': True,
+        'skip_download': True,
+        'format': format_id,
+    }
+
+    with YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(url, download=False)
+        return jsonify({"direct_url": info["url"]})
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

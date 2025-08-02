@@ -60,7 +60,7 @@ table {
 }
 th, td {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 th {
@@ -70,11 +70,7 @@ td {
     background-color: #000000;
 }
 a {
-    color: #007bff;
     text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
 }
 .error {
     color: red;
