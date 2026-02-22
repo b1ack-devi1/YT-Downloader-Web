@@ -8,7 +8,7 @@ Created by: [@b1ack-devi1](https://github.com/b1ack-devi1)
 
 ## Preview
 
-![Preview](Screenshot from 2026-02-22 20-40-04.png
+![Preview](preview.png
  "This is a sample image.")
 
 📥 Downloading 'Rick Astley - Never Gonna Give You Up (Video)' in format 137...
